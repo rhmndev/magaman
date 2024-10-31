@@ -33,8 +33,63 @@ class FrontController extends Controller
         ->inRandomOrder()
         // ->take(1)
         ->first();
-        
 
-        return view('front.index', compact('categories', 'articles', 'authors', 'featured_articles', 'banner_ads'));
+        // Entertainment Acticles = "NOT FEATURED"
+        $entertainment_articles = ArticleNews::whereHas('category', function ($query) {
+            $query->where('name', 'Entertainment');
+        })
+        ->where('is_featured', 'not_featured')
+        ->latest()
+        ->take(3)
+        ->get();
+        
+        // Entertainment Acticles = "FEATURED"
+        $entertainment_featured_articles = ArticleNews::whereHas('category', function ($query) {
+            $query->where('name', 'Entertainment');
+        })
+        ->where('is_featured', 'featured')
+        ->inRandomOrder()
+        ->first();
+
+        // Business Articles = "NOT FEATURED"
+        $business_articles = ArticleNews::whereHas('category', function ($query) {
+            $query->where('name', 'Business');
+        })
+        ->where('is_featured', 'not_featured')
+        ->latest()
+        ->take(3)
+        ->get();
+
+        // Business Acticles = "FEATURED"
+        $business_featured_articles = ArticleNews::whereHas('category', function ($query) {
+            $query->where('name', 'Business');
+        })
+        ->where('is_featured', 'featured')
+        ->inRandomOrder()
+        ->first();
+
+        // Automotive Articles = "NOT FEATURED"
+        $automotive_articles = ArticleNews::whereHas('category', function ($query) {
+            $query->where('name', 'Automotive');
+        })
+        ->where('is_featured', 'not_featured')
+        ->latest()
+        ->take(3)
+        ->get();
+
+        // Automotive Acticles = "FEATURED"
+        $automotive_featured_articles = ArticleNews::whereHas('category', function ($query) {
+            $query->where('name', 'Business');
+        })
+        ->where('is_featured', 'featured')
+        ->inRandomOrder()
+        ->first();
+
+        return view('front.index', compact('entertainment_featured_articles','entertainment_articles','business_articles','business_featured_articles','automotive_articles', 'automotive_featured_articles', 'categories', 'articles', 'authors', 'featured_articles', 'banner_ads'));
+    }
+
+    public function category(Category $category) {
+        $categories = Category::all();
+        return view('front.category', compact('category', 'categories'));
     }
 }
