@@ -90,6 +90,10 @@ class FrontController extends Controller
 
     public function category(Category $category) {
         $categories = Category::all();
-        return view('front.category', compact('category', 'categories'));
+        $banner_ads = BannerAdvertisement::where('is_active', 'active')
+        ->where('type', 'banner')
+        ->inRandomOrder()
+        ->first();
+        return view('front.category', compact('category', 'categories', 'banner_ads'));
     }
 }
