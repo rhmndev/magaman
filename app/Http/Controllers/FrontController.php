@@ -23,7 +23,7 @@ class FrontController extends Controller
         $featured_articles = ArticleNews::with(['category'])
         ->where('is_featured', 'featured')
         ->inRandomOrder()
-        ->take(3)
+        ->take(5)
         ->get();
 
         $authors = Author::all();
@@ -79,7 +79,7 @@ class FrontController extends Controller
 
         // Automotive Acticles = "FEATURED"
         $automotive_featured_articles = ArticleNews::whereHas('category', function ($query) {
-            $query->where('name', 'Business');
+            $query->where('name', 'Automotive');
         })
         ->where('is_featured', 'featured')
         ->inRandomOrder()
@@ -95,5 +95,14 @@ class FrontController extends Controller
         ->inRandomOrder()
         ->first();
         return view('front.category', compact('category', 'categories', 'banner_ads'));
+    }
+
+    public function author(Author $author) {
+        $categories = Category::all();
+        $banner_ads = BannerAdvertisement::where('is_active', 'active')
+        ->where('type', 'banner')
+        ->inRandomOrder()
+        ->first();
+        return view('front.author', compact('categories', 'author', 'banner_ads'));
     }
 }
