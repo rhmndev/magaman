@@ -1,21 +1,8 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link href="{{asset('output.css')}}" rel="stylesheet" />
-		<link href="{{asset('main.css')}}" rel="stylesheet" />
-		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-		<script src="https://cdn.tailwindcss.com"></script>
-		<!-- CSS -->
-		<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css" />
-	</head>
+@extends('front.master')
+@section('content')
 	<body class="font-[Poppins] pb-[72px]">
-		
 		<x-navbar/>
-
 		<nav id="Category" class="max-w-[1130px] mx-auto flex justify-center items-center gap-4 mt-[30px]">
-			
             @foreach($categories as $category)
             <a href="{{ route('front.category', $category->slug) }}" class="rounded-full p-[12px_22px] flex gap-[10px] font-semibold transition-all duration-300 border border-[#EEF0F7] hover:ring-2 hover:ring-[#FF6B18]">
 				<div class="w-6 h-6 flex shrink-0">
@@ -24,11 +11,9 @@
 				<span>{{ $category->name }}</span>
 			</a>
             @endforeach
-
 		</nav>
 		<section id="Featured" class="mt-[30px]">
 			<div class="main-carousel w-full">
-
 				@forelse($featured_articles as $article)
 				<div class="featured-news-card relative w-full h-[550px] flex shrink-0 overflow-hidden">
 					<img src="{{ Storage::url($article->thumbnail) }}" class="thumbnail absolute w-full h-full object-cover" alt="icon" />
@@ -52,8 +37,6 @@
 				@empty
 				<p>Belum ada data terbaru....</p>
 				@endforelse
-
-
 			</div>
 		</section>
 		<section id="Up-to-date" class="max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-[70px]">
@@ -83,8 +66,6 @@
                 @empty
                 <p>Belum ada data terbaru....</p>
                 @endforelse
-
-
 			</div>
 		</section>
 		<section id="Best-authors" class="max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-[70px]">
@@ -96,7 +77,6 @@
 				</h2>
 			</div>
 			<div class="grid grid-cols-6 gap-[30px]">
-
 				@forelse ($authors as $author)
 				<a href="{{ route('front.author', $author->slug) }}" class="card-authors">
 					<div class="rounded-[20px] border border-[#EEF0F7] p-[26px_20px] flex flex-col items-center gap-4 hover:ring-2 hover:ring-[#FF6B18] transition-all duration-300">
@@ -112,9 +92,6 @@
 				@empty
 				<p>Belum ada data terbaru....</p>
 				@endforelse
-
-
-
 			</div>
 		</section>
 		<section id="Advertisement" class="max-w-[1130px] mx-auto flex justify-center mt-[70px]">
@@ -167,7 +144,6 @@
 						@empty
 						<p>Belum ada data terbaru....</p>
 						@endforelse
-
 					</div>
 					<div class="sticky z-10 bottom-0 w-full h-[100px] bg-gradient-to-b from-[rgba(255,255,255,0.19)] to-[rgba(255,255,255,1)]"></div>
 				</div>
@@ -195,7 +171,6 @@
 				</div>
 				<div class="h-[424px] w-fit px-5 overflow-y-scroll overflow-x-hidden relative custom-scrollbar">
 					<div class="w-[455px] flex flex-col gap-5 shrink-0">
-
 						$@forelse ($business_articles as $article)
 						<a href="{{ route('front.details', $article->slug) }}" class="card py-[2px]">
 							<div class="rounded-[20px] border border-[#EEF0F7] p-[14px] flex items-center gap-4 hover:ring-2 hover:ring-[#FF6B18] transition-all duration-300">
@@ -211,7 +186,6 @@
 						@empty
 						<p>Belum ada data terbaru....</p>
 						@endforelse
-						
 					</div>
 					<div class="sticky z-10 bottom-0 w-full h-[100px] bg-gradient-to-b from-[rgba(255,255,255,0.19)] to-[rgba(255,255,255,1)]"></div>
 				</div>
@@ -239,7 +213,6 @@
 				</div>
 				<div class="h-[424px] w-fit px-5 overflow-y-scroll overflow-x-hidden relative custom-scrollbar">
 					<div class="w-[455px] flex flex-col gap-5 shrink-0">
-
 						@forelse ($automotive_articles as $article)
 						<a href="{{ route('front.details', $article->slug) }}" class="card py-[2px]">
 							<div class="rounded-[20px] border border-[#EEF0F7] p-[14px] flex items-center gap-4 hover:ring-2 hover:ring-[#FF6B18] transition-all duration-300">
@@ -254,18 +227,32 @@
 						</a>
 						@empty
 						<p>Belum ada data terbaru....</p>
-						@endforelse
-						
+						@endforelse					
 					</div>
 					<div class="sticky z-10 bottom-0 w-full h-[100px] bg-gradient-to-b from-[rgba(255,255,255,0.19)] to-[rgba(255,255,255,1)]"></div>
 				</div>
 			</div>
 		</section>
-
 		<script src="{{asset('customjs/two-lines-text.js')}}"></script>
 		<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 		<!-- JavaScript -->
 		<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 		<script src="{{asset('customjs/carousel.js')}}"></script>
 	</body>
-</html>
+
+	<script src="{{asset('customjs/carousel.js')}}"></script>
+@endsection
+
+@push('after-styles')
+<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css" />
+@endpush
+
+@push('after-scripts')
+<script src="{{asset('customjs/two-lines-text.js')}}"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<!-- JavaScript -->
+<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+@endpush

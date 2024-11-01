@@ -23,7 +23,7 @@ class FrontController extends Controller
         $featured_articles = ArticleNews::with(['category'])
         ->where('is_featured', 'featured')
         ->inRandomOrder()
-        ->take(5)
+        ->take(3)
         ->get();
 
         $authors = Author::all();
@@ -105,4 +105,20 @@ class FrontController extends Controller
         ->first();
         return view('front.author', compact('categories', 'author', 'banner_ads'));
     }
+
+    public function search(Request $request) {
+        $request->validate([
+            'keyword' => ['required', 'string', 'max:255']
+        ]);
+
+        $categories = Category::all();
+
+        $keyword = $request->keyword;
+
+        $articles = ArticleNews::with(['category', 'author'])
+        ->where('name', 'like', '%' . $keyword . '%')->paginate(6);
+
+        return view('front.search', compact('articles', 'keyword', 'categories'));
+    }
+
 }
