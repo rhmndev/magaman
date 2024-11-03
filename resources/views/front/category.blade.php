@@ -1,22 +1,8 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link href="{{asset('output.css')}}" rel="stylesheet" />
-	<link href="{{asset('main.css')}}" rel="stylesheet" />
-	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
-		rel="stylesheet" />
-        <script src="https://cdn.tailwindcss.com"></script>
-</head>
-
+@extends('front.master')
+@section('content')
 <body class="font-[Poppins] pb-[83px]">
-	
     <x-navbar/>
-
     <nav id="Category" class="max-w-[1130px] mx-auto flex justify-center items-center gap-4 mt-[30px]">
-			
             @foreach($categories as $item_category)
             <a href="{{ route('front.category', $item_category->slug) }}" class="rounded-full p-[12px_22px] flex gap-[10px] font-semibold transition-all duration-300 border border-[#EEF0F7] hover:ring-2 hover:ring-[#FF6B18]">
 				<div class="w-6 h-6 flex shrink-0">
@@ -25,7 +11,6 @@
 				<span>{{ $item_category->name }}</span>
 			</a>
             @endforeach
-
 	</nav>
 	<section id="Category-result" class="max-w-[1130px] mx-auto flex items-center flex-col gap-[30px] mt-[70px]">
 		<h1 class="text-4xl leading-[45px] font-bold text-center">
@@ -33,7 +18,6 @@
 			{{ $category->name }}
 		</h1>
 		<div id="search-cards" class="grid grid-cols-3 gap-[30px]">
-
             @forelse($category->news as $news)
 			<a href="{{ route('front.details', $news->slug) }}" class="card">
 				<div
@@ -55,7 +39,6 @@
             @empty
             <p>Belum ada data terbaru....</p>
             @endforelse
-
 		</div>
 	</section>
 	<section id="Advertisement" class="max-w-[1130px] mx-auto flex justify-center mt-[70px]">
@@ -72,5 +55,4 @@
 		</div>
 	</section>
 </body>
-
-</html>
+@endsection

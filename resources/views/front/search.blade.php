@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link href="{{asset('output.css')}}" rel="stylesheet" />
-	    <link href="{{asset('main.css')}}" rel="stylesheet" />
-		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-        <script src="https://cdn.tailwindcss.com"></script>
-	</head>
+@extends('front.master')
+@section('content')
 	<body class="font-[Poppins]">
 		<x-navbar/>
 		<nav id="Category" class="max-w-[1130px] mx-auto flex justify-center items-center gap-4 mt-[30px]">
@@ -48,7 +40,7 @@
 			<div id="search-cards" class="grid grid-cols-3 gap-[30px]">
 
                 @forelse ($articles as $article)
-                <a href="{{ route('front.author', $article->slug) }}" class="card">
+                <a href="{{ route('front.details', $article->slug) }}" class="card">
                     <div
                         class="flex flex-col gap-4 p-[26px_20px] transition-all duration-300 ring-1 ring-[#EEF0F7] hover:ring-2 hover:ring-[#FF6B18] rounded-[20px] overflow-hidden bg-white">
                         <div class="thumbnail-container h-[200px] relative rounded-[20px] overflow-hidden">
@@ -72,4 +64,4 @@
 			</div>
 		</section>
 	</body>
-</html>
+@endsection
