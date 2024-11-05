@@ -21,7 +21,8 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## How TO Install and Running Project
+## How To Install and Running Project
+
 
 1. `git clone https://github.com/rhmndev/magaman.git`
 2. `composer install`
