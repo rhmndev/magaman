@@ -33,6 +33,8 @@ class AuthorResource extends Resource
                 ->maxLength(255),
 
                 Forms\Components\FileUpload::make('avatar')
+                ->disk('public')
+                ->directory('storage')
                 ->required()
                 ->image(),
             ]);
@@ -45,6 +47,8 @@ class AuthorResource extends Resource
                 //
                 Tables\Columns\TextColumn::make('id')
                 ->label('Number'),
+                // 
+                Tables\Columns\TextColumn::make('occupation'),
 
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\ImageColumn::make('avatar'),

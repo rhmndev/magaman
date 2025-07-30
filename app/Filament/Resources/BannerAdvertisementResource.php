@@ -42,9 +42,11 @@ class BannerAdvertisementResource extends Resource
 
                 Forms\Components\Select::make('type')
                 ->options([
+                    
                     'banner' => 'Banner',
                     'square' => 'Square',
                 ])
+                ->required(),
             ]);
     }
 
