@@ -17,7 +17,7 @@
                 placeholder="Search hot trendy news today..." />
         </form>
     </div>
-    <div class="flex items-center gap-3">
+    {{-- <div class="flex items-center gap-3">
         <a href=""
             class="rounded-full p-[12px_22px] flex gap-[10px] font-semibold transition-all duration-300 border border-[#EEF0F7] hover:ring-2 hover:ring-[#FF6B18]">Upgrade
             Pro</a>
@@ -28,5 +28,5 @@
             </div>
             <span>Post Ads</span>
         </a>
-    </div>
+    </div> --}}
 </nav>
